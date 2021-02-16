@@ -1,9 +1,16 @@
 pipeline {
-  agent any
+  agent {
+    kubernetes {
+      label 'centos-7'
+    }
+  }
   options {
     timestamps()
     disableConcurrentBuilds()
   }
+  environment {
+    JAVA_TOOL_OPTIONS='-Xmx2G -Djava.io.tmpdir=/tmp/genie.lsp4j -DforkCount=1'  
+  } 
   stages {
     stage('Clean') {
       steps {
