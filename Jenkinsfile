@@ -10,7 +10,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause
  ******************************************************************************/
 
-node {
+node('centos-7') {
+	def javaHome = tool 'adoptopenjdk-hotspot-jdk8-latest'
+    env.JAVA_HOME = "${javaHome}"
 	properties([
 		[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: '15']]
 	])
